@@ -29,18 +29,24 @@ const Cart = () => {
                 <div className="col">
                     <table className="table">
                         <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                 <td colSpan={6}><button className="btn text-light bg-secondary" onClick={clear} >Vaciar carrito</button></td>
+                            </tr>
                             {cart.map(item => (
                                 <tr key={item.id}>
                                 <td><img src={item.imagen} alt={item.nombre} width={80} /></td>
-                                <td>{item.nombre}</td>
-                                <td>${item.precio}</td>
-                                <td>{item.quantity}</td>
-                                <td className="text-end"><img src={"./public/trash.svg"} alt="trash" className="" /> </td>
+                                <td colSpan={5} className="align-middle text-center">{item.nombre}</td>
+                                <td className="align-middle text-center">${item.precio}</td>
+                                <td className="align-middle text-center">{item.quantity}</td>
+                                <td className=" align-middle text-end"><img src={"./public/trash.svg"} alt="trash" title="Eliminar producto" onClick={() => {removeItem(item.id)}} /> </td>
                                 </tr>
                             ))}
                             <tr>
-                                <td colSpan={3}><b>Total</b></td>
+                                <td colSpan={6}><b>Total</b></td>
                                 <td className="text-end"><b>${sumaTotProdu()}</b></td>
+                                <td>&nbsp;</td>
+                                <td><Link to={"/Checkout"} className=" btn text-light bg-secondary text-decoration-none">Checkout</Link></td>
                             </tr>
                         </tbody>
                     </table>
